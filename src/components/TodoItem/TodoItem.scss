@@ -1,0 +1,40 @@
+@import '~open-color/open-color';
+
+.todo-item{
+    padding: 1rem;
+    display: flex;
+    align-items: center; //세로 가운데 정렬
+    cursor: pointer;
+    
+    .tick{
+        margin-right: 1rem;
+    }
+
+    .text{
+        flex:1;
+        word-break: break-all;
+        &.done{
+            text-decoration: line-through;
+        }
+    }
+    
+    .remove{
+        margin-left: 1rem;
+        color: $oc-red-6;
+        font-size: 0.8rem;
+        &:hover{
+            color: $oc-orange-4;
+            text-decoration: underline;
+        }
+    }
+    &:nth-child(odd){ //홀수 번째 요소는 회색 배경으로
+        background: $oc-gray-1;
+    }
+    &:hover{
+        background: $oc-gray-2;
+    }
+}
+
+.todo-item + .todo-item{
+    border-top: 1px solid $oc-gray-1;
+}
