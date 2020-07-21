@@ -82,11 +82,6 @@ module.exports = function(webpackEnv) {
       {
         loader: require.resolve('css-loader'),
         options: cssOptions,
-        // options:{
-        //   importLoaders: 1,
-        //   modules: true,
-        //   localIdentName: '[path][name]_ _[local]--[hash:base64:5]'
-        // },
       },
       {
         // Options for PostCSS as we reference these options twice
@@ -104,14 +99,6 @@ module.exports = function(webpackEnv) {
                 flexbox: 'no-2009',
               },
               stage: 3,
-            // autoprefixer({
-            //   browsers:[
-            //     '>1%',
-            //     'last 4 versions',
-            //     'Firefox ESR',
-            //     'not ie < 9',
-            //   ],
-            //   flexbox: 'no-2009',
             }),
             // Adds PostCSS Normalize as the reset css with default options,
             // so that it honors browserslist config in package.json
@@ -470,18 +457,14 @@ module.exports = function(webpackEnv) {
             {
               test: sassRegex,
               exclude: sassModuleRegex,
-              use: getStyleLoaders(
-                {
-                  importLoaders: 3,
-                  sourceMap: isEnvProduction && shouldUseSourceMap,
-                },
-                'sass-loader'
-              ),
-              // Don't consider CSS imports dead code even if the
-              // containing package claims to have no side effects.
-              // Remove this when webpack adds a warning or an error for this.
-              // See https://github.com/webpack/webpack/issues/6571
-              sideEffects: true,
+              use: [
+                // Creates `style` nodes from JS strings
+                'style-loader',
+                // Translates CSS into CommonJS
+                'css-loader',
+                // Compiles Sass to CSS
+                'sass-loader',
+              ],
             },
             // Adds support for CSS Modules, but using SASS
             // using the extension .module.scss or .module.sass
