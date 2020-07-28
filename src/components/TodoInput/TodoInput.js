@@ -1,22 +1,15 @@
 import React from 'react';
-import styles from './TodoInput.scss';
-import classNames from 'classnames/bind';
+import './TodoInput.scss';
 
-const cx = classNames.bind(styles);
-
-const TodoInput = ({value, onChange, onInsert}) => {
-    const handleKeyPress=(e)=>{
-        if(e.key==='Enter'){
-            onInsert();
-        }
-    }
-
+const TodoInput = ({value, onChange, onCreate, onKeyPress})=>{
     return(
-        <div classNames={cx('todo-input')}>
-            <input onChange={onChange} value={value} onKeyPress={handleKeyPress}/>
-            <div className={cx('add-button')} onClick={onInsert}>추가</div>
+        <div className="form">
+            <input value={value} onChange={onChange} onKeyPress={onKeyPress}/>
+            <div className="create-button" onClick={onCreate}>
+                추가
+            </div>
         </div>
-    );
-};
+    )
+}
 
 export default TodoInput;

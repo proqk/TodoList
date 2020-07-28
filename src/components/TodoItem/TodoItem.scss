@@ -1,40 +1,45 @@
-@import '~open-color/open-color';
-
-.todo-item{
+.todo-item {
     padding: 1rem;
     display: flex;
     align-items: center; //세로 가운데 정렬
     cursor: pointer;
-    
-    .tick{
-        margin-right: 1rem;
-    }
-
-    .text{
-        flex:1;
-        word-break: break-all;
-        &.done{
-            text-decoration: line-through;
-        }
-    }
-    
-    .remove{
-        margin-left: 1rem;
-        color: $oc-red-6;
-        font-size: 0.8rem;
-        &:hover{
-            color: $oc-orange-4;
-            text-decoration: underline;
-        }
-    }
-    &:nth-child(odd){ //홀수 번째 요소는 회색 배경으로
-        background: $oc-gray-1;
-    }
-    &:hover{
-        background: $oc-gray-2;
-    }
-}
-
-.todo-item + .todo-item{
-    border-top: 1px solid $oc-gray-1;
-}
+    transition: all 0.15s;
+    user-select: none;
+  }
+  
+  .todo-item:hover {
+    background: #e3fafc;
+  }
+  
+  .todo-item:hover .remove {
+    opacity: 1;
+  }
+  
+  .todo-item + .todo-item {
+    border-top: 1px solid #f1f3f5;
+  }
+  
+  .remove {
+    margin-right: 1rem;
+    color: #e64980;
+    font-weight: 600;
+    opacity: 0;
+  }
+  
+  .todo-text {
+    flex: 1;
+    word-break: break-all;
+  }
+  
+  .checked {
+    text-decoration: line-through;
+    color: #adb5bd;
+  }
+  
+  .check-mark {
+    font-size: 1.5rem;
+    line-height: 1rem;
+    margin-left: 1rem;
+    color: #3bc9db;
+    font-weight: 800;
+  }

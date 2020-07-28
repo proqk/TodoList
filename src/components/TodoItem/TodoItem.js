@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
-import styles from './TodoItem.scss';
-import classNames from 'classnames/bind';
-
-const cx = classNames.bind(styles);
+import './TodoItem.scss';
 
 class TodoItem extends Component {
     render() {
-        const { done, children, onToggle, onRemove } = this.props;
+        const { text, checked, color, id, onToggle, onRemove } = this.props;
 
         return (
-            <div className={cx('todo-item')} onClick={onToggle}>
-                <div className={cx('tick')} type="checkbox" checked={done} readOnly/>
-                <div className={cx('text', {done})}>{children}</div>
-                <div className={cx('todo-item')} onClick={onRemove}>[지우기]</div>
+            <div className="todo-item" onClick={() => onToggle(id)}>
+                <div className="remove" onClick={(e) => {
+                    e.stopPropagation(); //onToggle이 실행되지 않도록
+                    onRemove(id)}
+                }>&times;</div>
+                <div className={`todo-text ${checked && 'checked'}`} style={{color}}>
+                    <div>{text}</div>
+                </div>
+                {
+                    checked && (<div className="check-mark">✓</div>)
+                }
             </div>
         );
     }

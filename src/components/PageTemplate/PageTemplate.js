@@ -1,17 +1,22 @@
 import React from 'react';
-import styles from './PageTemplate.scss';
-import classNames from 'classnames/bind';
+import './PageTemplate.scss';
 
-const cx = classNames.bind(styles);
-
-const PageTemplate = ({children}) => {
+const PageTemplate = ({form, palette, children}) => {
     return(
-        <div className={cx('page-template')}>
-            <h1>오늘 할 일</h1>
-            <div className={cx('content')}>
-                {children}
+        <main className="todo-list-template">
+            <div className="title">
+                 오늘 할 일
             </div>
-        </div>
+            <section className="palette-template">
+                {palette}
+            </section>
+            <section className="form-wrapper">
+                {form}
+            </section>
+            <section className="todos-wrapper">
+                {children}
+            </section>
+        </main>
     );
 };
 
