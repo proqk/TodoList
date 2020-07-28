@@ -16,8 +16,7 @@ class App extends Component {
             { id: 1, text: '리액트 에러 고치기', checked: false},
             { id: 2, text: '안녕', checked: true }
         ],
-//        color: '#343a40'
-        color: '#12b886'
+        color: '#343a40'
     }
 
     handleChange=(e)=>{
